@@ -1,38 +1,70 @@
 <template>
-    <div class="home">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Welcome to Vue.js</h1>
-                    <p>This is a simple Vue.js application.</p>
+  <Head title="Tenants Board" />
+  <AuthenticatedLayout>
 
-                    <breeze-dropdown-link @click="logout" as="button">
-                        Log Out
-                    </breeze-dropdown-link>
-                </div>
+      <div class="row">
+          <div class="col-md-3 col-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                Header
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Content</p>
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
+
+          <div class="col-md-3 col-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                Header
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Content</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                Header
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Content</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                Header
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Content</p>
+              </div>
+            </div>
+          </div>
+      </div>
+
+  </AuthenticatedLayout>
+
+  
 </template>
 
 <script>
-import BreezeDropdown from '@/Components/Dropdown.vue'
-import BreezeDropdownLink from '@/Components/DropdownLink.vue'
-import BreezeNavLink from '@/Components/NavLink.vue'
-import { Link } from '@inertiajs/inertia-vue3'
-import { Inertia } from '@inertiajs/inertia'
+import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import { Head } from '@inertiajs/inertia-vue3'
 
 export default {
   components: {
-    BreezeDropdown,
-    BreezeDropdownLink,
-    BreezeNavLink,
-    Link,
-  },
-    methods: {
-    logout() {
-      Inertia.post(route("logout"));
-    }
+    AuthenticatedLayout,
+    Head,
   },
 }
 </script>
