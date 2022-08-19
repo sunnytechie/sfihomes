@@ -1,19 +1,19 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center my-5">
-      <div class="col-sm-12 col-md-8 col-lg-5 my-5">
-        <div class="d-flex justify-content-center mb-3">
-          <Link href="/">
-            <breeze-application-logo width="82" />
-          </Link>
-        </div>
-
-        <div class="card shadow-sm px-3">
-          <slot />
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+              <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('/assets/img/camp-view.jpg'); background-size: cover;">
+                </div>
+              </div>
+              <slot />
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
 
 <script>

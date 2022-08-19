@@ -1,52 +1,62 @@
 <template>
   <Head title="Log in" />
 
-  <div class="card-body">
+    <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+      <div class="card card-plain">
 
-    <breeze-validation-errors class="mb-3" />
-
-    <div v-if="status" class="alert alert-success mb-3 rounded-0" role="alert">
-      {{ status }}
-    </div>
-
-    <form @submit.prevent="submit">
-      <div class="mb-3">
-        <breeze-label for="email" value="Email" />
-        <breeze-input id="email" type="email" v-model="form.email" required autofocus />
-      </div>
-
-      <div class="mb-3">
-        <breeze-label for="password" value="Password" />
-        <breeze-input id="password" type="password" v-model="form.password" required autocomplete="current-password" />
-      </div>
-
-      <div class="mb-3">
-        <div class="form-check">
-          <breeze-checkbox id="remember_me" name="remember" v-model:checked="form.remember" />
-
-          <label class="form-check-label" for="remember_me">
-            Remember Me
-          </label>
+        <div class="card-header">
+          <h4 class="font-weight-bolder">Sign in</h4>
+          <p class="mb-0">Enter your email and password to register</p>
+          <breeze-validation-errors class="mb-3" />
+            <div v-if="status" class="alert alert-success mb-3 rounded-0" role="alert">
+              {{ status }}
+            </div>
         </div>
-      </div>
 
-      <div class="mb-0">
-        <div class="d-flex justify-content-end align-items-baseline">
-          <Link v-if="canResetPassword" :href="route('password.request')" class="text-muted me-3">
+        <div class="card-body">
+          <form role="form" @submit.prevent="submit">
+          
+            <div class="input-group input-group-outline mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" v-model="form.email" required>
+            </div>
+
+            <div class="input-group input-group-outline mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" v-model="form.password" required>
+            </div>
+
+            <div class="form-check form-check-info text-start ps-0">
+              <div class="form-check">
+                <breeze-checkbox id="remember_me" name="remember" v-model:checked="form.remember" />
+
+                <label class="form-check-label" for="remember_me">
+                  Remember Me
+                </label>
+              </div>
+            </div>
+
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
+                <div v-show="form.processing" class="spinner-border spinner-border-sm" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                Login
+                </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center pt-0 px-lg-2 px-1">
+          <p class="mb-2 text-sm mx-auto">
+            <Link v-if="canResetPassword" :href="route('password.request')" class="text-primary text-gradient font-weight-bold">
             Forgot your password?
           </Link>
-
-          <breeze-button class="ms-4" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
-            <div v-show="form.processing" class="spinner-border spinner-border-sm" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            
-            Log in
-          </breeze-button>
+          </p>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+
 </template>
 
 <script>
@@ -100,3 +110,15 @@ export default {
   }
 }
 </script>
+
+<style>
+  .card-header {
+    background: #F0F2F5 !important;
+    border: none !important;
+  }
+
+  .form-check {
+    padding-left: 0 !important;
+  }
+  
+</style>
