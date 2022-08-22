@@ -1,6 +1,6 @@
 <template>
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-      <div class="container-fluid py-1 px-3">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky" id="navbarBlur" navbar-scroll="true">
+      <div class="container-fluid px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
@@ -12,16 +12,31 @@
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
               <label class="form-label">Type here...</label>
-              <input type="text" class="form-control" style="width: 270px">
+              <input type="text" class="form-control">
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
+
+            <li class="nav-item dropdown me-4 mt-3 border-1">
+              <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff; text-decoration: none;">
+                <span class="mx-2"><i class="bi bi-plus-square-dotted"></i> Add New</span> 
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Tenants</a></li>
+                <li><a class="dropdown-item" href="#">New Department</a></li>
+                <li><a class="dropdown-item" href="#">Building/Quaters</a></li>
+              </ul>
+            </li>
+
+
+
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
+                <i class="bi bi-box-arrow-left me-sm-1 me-1"></i>
                 <span class="d-sm-inline d-none">Sign Out</span>
               </a>
             </li>
+
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="#" class="nav-link text-body p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -32,14 +47,36 @@
               </a>
             </li>
 
-            <!-- <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li> -->
+             
             
           </ul>
         </div>
       </div>
     </nav>
 </template>
+
+<style>
+  @media (min-width: 992px){
+    .dropdown:not(.dropdown-hover) .dropdown-menu.show {
+        margin-top: 0.1rem !important;
+    }
+  }
+
+  .dropdown-menu {
+    width: auto !important;
+}
+
+@media (min-width: 992px) {
+  .dropdown .dropdown-menu:before {
+    font-family: "FontAwesome";
+    content: "\f0d8";
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: auto;
+    font-size: 22px;
+    color: #343A40 !important;
+    transition: top 0.35s ease;
+}
+}
+</style>

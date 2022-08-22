@@ -22,14 +22,11 @@
       <!-- //Page Content -->
 
     </main>
-
-    <Settings />
     
   </section>
 </template>
 
 <script>
-import Settings from '../Pages/Shared/Settings.vue'
 import Sidebar from '../Pages/Shared/Sidebar.vue'
 import Navigator from '../Pages/Shared/Navbar.vue'
 import Footer from '../Pages/Shared/Footer.vue'
@@ -50,7 +47,6 @@ export default {
     Sidebar,
     Navigator,
     Footer,
-    Settings,
 },
 
   data() {
