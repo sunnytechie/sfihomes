@@ -18,6 +18,10 @@
         <!-- Footer -->
           <Footer />
         <!-- //Footer -->
+
+        <!-- Footer -->
+        <Offcanvas />
+        <!-- //Footer -->
       </div>
       <!-- //Page Content -->
 
@@ -36,6 +40,7 @@ import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeNavLink from '@/Components/NavLink.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import { Inertia } from '@inertiajs/inertia'
+import Offcanvas from '@/Pages/Shared/Offcanvas.vue'
 
 export default {
   components: {
@@ -47,6 +52,7 @@ export default {
     Sidebar,
     Navigator,
     Footer,
+    Offcanvas
 },
 
   data() {

@@ -17,43 +17,59 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
 
-            <li class="nav-item dropdown me-4 mt-3 border-1">
-              <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff; text-decoration: none;">
-                <span class="mx-2"><i class="bi bi-plus-square-dotted"></i> Add New</span> 
+            <li class="nav-item dropdown me-4 border-1">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Add New
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">Tenants</a></li>
                 <li><a class="dropdown-item" href="#">New Department</a></li>
                 <li><a class="dropdown-item" href="#">Building/Quaters</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Administrators</a></li>
               </ul>
             </li>
 
-
-
             <li class="nav-item d-flex align-items-center">
-              <a href="#" class="nav-link text-body font-weight-bold px-0">
+              <Link @click="logout" class="nav-link text-body px-2 font-weight-bold px-0" as="button">
                 <i class="bi bi-box-arrow-left me-sm-1 me-1"></i>
                 <span class="d-sm-inline d-none">Sign Out</span>
-              </a>
+              </Link>
             </li>
 
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="#" class="nav-link text-body p-0" id="iconNavbarSidenav">
+              <div class="nav-link text-body p-0" id="iconNavbarSidenav" style="cursor: pointer;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line"></i>
                   <i class="sidenav-toggler-line"></i>
                   <i class="sidenav-toggler-line"></i>
                 </div>
-              </a>
+              </div>
             </li>
 
-             
+           
             
           </ul>
         </div>
       </div>
     </nav>
 </template>
+
+<script>
+  import { Link } from "@inertiajs/inertia-vue3"
+  import { Inertia } from '@inertiajs/inertia'
+  export default {
+    components: {
+      Link
+    },
+
+    methods: {
+    logout() {
+      Inertia.post(route("logout"));
+    }
+  }
+  }
+</script>
 
 <style>
   @media (min-width: 992px){
