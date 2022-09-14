@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 
-class BuildingController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +24,6 @@ class BuildingController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Buildings/Create');
     }
 
     /**
@@ -37,22 +34,7 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        //validate the data
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'location' => 'required',
-            'thumbnail' => 'required',
-        ]);
-
-        //store in the database
-        $building = New Building;
-        $building->name = $request->name;
-        $building->location = $request->location;
-        $building->thumbnail = $request->thumbnail;
-        $building->save();
-        
-        return redirect()->route('buildings.create')->with('message', 'Building name created successfully.');
+        //
     }
 
     /**

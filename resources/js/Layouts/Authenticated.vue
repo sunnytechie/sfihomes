@@ -13,6 +13,13 @@
 
       <!-- Page Content -->
       <div class="container-fluid py-4">
+        <!-- Flash message -->
+        <div v-if="$page.props.flash.message" class="alert alert-primary alert-dismissible fade show" role="alert" style="background: #fff; color: #000">
+          <strong>Heads up!</strong> {{ $page.props.flash.message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <!-- //End Flash message -->
+
         <slot />
 
         <!-- Footer -->

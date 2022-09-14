@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -23,7 +25,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        //dd('Creat department');
+        return Inertia::render('Departments/Create');
     }
 
     /**
@@ -34,7 +37,21 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //validate the data
+         $this->validate($request, [
+            'name' => 'required|max:255',
+            'location' => 'required',
+            'thumbnail' => 'required',
+        ]);
+
+        //store in the database
+        $department = New Department;
+        $department->name = $request->name;
+        $department->location = $request->location;
+        $department->thumbnail = $request->thumbnail;
+        $department->save();
+        
+        return redirect()->route('departments.create')->with('message', 'Work department created successfully');
     }
 
     /**
