@@ -141,5 +141,14 @@ export default {
     AuthenticatedLayout,
     Head,
   },
+
+  props: {
+    tenant: Object,
+    detail: Object,
+    assets: Array,
+    items: Array,
+    securities: Array,
+    members: Array,
+  }
 }
 </script>

@@ -1,11 +1,18 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DetailController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NextOfKinController;
+use App\Http\Controllers\RefereeController;
+use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\UserController;
 
@@ -29,5 +36,10 @@ Route::resource('tenants', TenantController::class)->middleware(['auth', 'verifi
 Route::resource('departments', DepartmentController::class)->middleware(['auth', 'verified']);
 Route::resource('buildings', BuildingController::class)->middleware(['auth', 'verified']);
 Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
+Route::resource('assets', AssetController::class)->middleware(['auth', 'verified']);
+Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
+Route::resource('members', MemberController::class)->middleware(['auth', 'verified']);
+Route::resource('securities', SecurityController::class)->middleware(['auth', 'verified']);
+Route::resource('details', DetailController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

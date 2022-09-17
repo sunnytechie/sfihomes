@@ -88,6 +88,23 @@
         <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset('assets/js/material-dashboard.min.js') }}"></script>
 
+        {{-- Image preview --}}
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            function previewFile(input){
+                var file = $("input[type=file]").get(0).files[0];
+         
+                if(file){
+                    var reader = new FileReader();
+         
+                    reader.onload = function(){
+                        $("#previewImg").attr("src", reader.result);
+                    }
+         
+                    reader.readAsDataURL(file);
+                }
+            }
+        </script>
     </body>
     
 </html>

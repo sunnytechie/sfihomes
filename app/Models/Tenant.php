@@ -31,25 +31,6 @@ class Tenant extends Model
         'tenant_resident_address',
         'tenant_postcode',
         'tenant_mobile_phone',
-        'next_kin_photo',
-        'next_kin_fullname',
-        'next_kin_relationship',
-        'next_kin_address',
-        'next_kin_postcode',
-        'next_kin_state',
-        'next_kin_city',
-        'next_kin_phone',
-        'next_kin_email',
-        'referee_photo',
-        'referee_fullname',
-        'referee_city',
-        'referee_state',
-        'referee_lga',
-        'referee_phone',
-        'referee_relationship',
-        'referee_address',
-        'referee_occupation',
-        'referee_age',
     ];
 
     public function members()
@@ -65,5 +46,10 @@ class Tenant extends Model
     public function securities()
     {
         return $this->hasMany(Security::class);
+    }
+
+    public function detail()
+    {
+        return $this->hasOne(Detail::class);
     }
 }

@@ -28,35 +28,14 @@ return new class extends Migration
             $table->string('tenant_state_origin');
             $table->string('tenant_city');
             $table->string('tenant_lga');
+            $table->string('tenant_postcode')->nullable();
+            $table->text('tenant_resident_address');
             $table->string('tenant_number_of_kids')->nullable();
             $table->string('tenant_disability')->default('None');
             $table->string('tenant_home_number')->nullable();
             $table->string('tenant_office_number')->nullable();
             $table->string('tenant_email')->nullable();
-            $table->text('tenant_resident_address');
-            $table->string('tenant_postcode')->nullable();
             $table->string('tenant_mobile_phone');
-
-            $table->string('next_kin_photo')->nullable();
-            $table->string('next_kin_fullname');
-            $table->string('next_kin_relationship');
-            $table->string('next_kin_address');
-            $table->string('next_kin_postcode');
-            $table->string('next_kin_state');
-            $table->string('next_kin_city');
-            $table->string('next_kin_phone');
-            $table->string('next_kin_email');
-
-            $table->string('referee_photo')->nullable();
-            $table->string('referee_fullname');
-            $table->string('referee_city');
-            $table->string('referee_state');
-            $table->string('referee_lga');
-            $table->string('referee_phone');
-            $table->string('referee_relationship');
-            $table->string('referee_address');
-            $table->string('referee_occupation');
-            $table->string('referee_age')->nullable();
 
             $table->timestamps();
         });

@@ -21,7 +21,7 @@
                 Add New
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><Link class="dropdown-item" href="tenants/create"><i class="bi bi-person-plus-fill"></i> Tenants</Link></li>
+                <li><Link class="dropdown-item" href="/tenants/create"><i class="bi bi-person-plus-fill"></i> Tenants</Link></li>
                 <li><Link class="dropdown-item" href="/departments/create"><i class="bi bi-pc-display-horizontal"></i> Department</Link></li>
                 <li><Link class="dropdown-item" href="/buildings/create"><i class="bi bi-building"></i> Building/Quaters</Link></li>
                 <li><hr class="dropdown-divider"></li>
