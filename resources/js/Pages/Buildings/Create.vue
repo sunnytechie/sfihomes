@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Create New Building</h5>
-                            <form @submit.prevent="form.post(route('buildings.store'))">
+                            <form @submit.prevent="form.post(route('buildings.store'), {preserveScroll: false, onSuccess: () => form.reset(),})">
                                 <div class="form-group mb-3">
                                     <label for="my-input">Name</label>
                                     <input id="my-input" class="form-control" placeholder="Name of the Building or Quaters" type="text" v-model="form.name" required>

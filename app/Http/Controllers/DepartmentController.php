@@ -41,7 +41,7 @@ class DepartmentController extends Controller
          $this->validate($request, [
             'name' => 'required|max:255',
             'location' => 'required',
-            'thumbnail' => 'required',
+            'thumbnail' => '',
         ]);
 
         //store in the database

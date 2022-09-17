@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Tenant;
+use App\Models\Security;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class SecurityController extends Controller
 {
@@ -45,7 +49,12 @@ class SecurityController extends Controller
      */
     public function show($id)
     {
-        //
+        $security = Security::find($id);
+        $details = $security->security_details;
+        return Inertia::render('Security/Show', [
+            'security' => $security,
+            'details' => $details,
+        ]);
     }
 
     /**
@@ -56,7 +65,16 @@ class SecurityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $security = Security::find($id);
+        $details = $security->security_details;
+        $tenantID = $security->tenant_id;
+        $tenantDetails = Tenant::where('id', $tenantID)->first();
+        //dd($tenantDetails);
+        return Inertia::render('Security/Edit', [
+            'security' => $security,
+            'details' => $details,
+            'tenantDetails' => $tenantDetails,
+        ]);
     }
 
     /**
@@ -68,7 +86,12 @@ class SecurityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $security = Security::find($id);
+        $security->security_details = $request->security_details;
+        $security->security_file = $request->security_file;
+        $security->save();
+
+        return Redirect::route('securities.edit', $id)->with('message', 'Updated successfully.');
     }
 
     /**

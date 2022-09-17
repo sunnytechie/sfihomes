@@ -45,7 +45,7 @@ class Tenant extends Model
 
     public function securities()
     {
-        return $this->hasMany(Security::class);
+        return $this->hasOne(Security::class);
     }
 
     public function detail()

@@ -103,6 +103,13 @@ class TenantController extends Controller
 
         $tenantID = $tenant->id;
 
+           
+        $security = New Security;
+        $security->tenant_id = $tenantID;
+        $security->security_details = "Nil";
+        $security->security_file = "Nil";
+        $security->save();
+
         $detail = New Detail;
         $detail->tenant_id = $tenantID;
         $detail->next_kin_photo = "Nil";
@@ -127,7 +134,7 @@ class TenantController extends Controller
         $detail->save();
 
         $detailID = $detail->id;
-
+         
         return Redirect::route('details.edit', $detailID);
     }
 
@@ -143,7 +150,7 @@ class TenantController extends Controller
         $detail = Detail::where('tenant_id', $id)->first();
         $assets = Asset::where('tenant_id', $id)->get();
         $items = Item::where('tenant_id', $id)->get();
-        $securities = Security::where('tenant_id', $id)->get();
+        $security = Security::where('tenant_id', $id)->first();
         $members = Member::where('tenant_id', $id)->get();
         //dd($detail);
         return Inertia::render('Tenants/Show', [
@@ -151,7 +158,7 @@ class TenantController extends Controller
             'detail' => $detail,
             'assets' => $assets,
             'items' => $items,
-            'securities' => $securities,
+            'security' => $security,
             'members' => $members,
         ]);
     }

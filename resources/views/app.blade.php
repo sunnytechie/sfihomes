@@ -105,6 +105,16 @@
                 }
             }
         </script>
+
+        <script>
+            import Editor from '@tinymce/tinymce-vue'
+            export default {
+                name: 'app',
+                components: {
+                    'editor': Editor
+                }
+            }
+        </script>
     </body>
     
 </html>

@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Register a new tenant.</h4>
-                            <form class="row g-3" @submit.prevent="form.post(route('tenants.store'))">
+                            <form class="row g-3" @submit.prevent="form.post(route('tenants.store'), {preserveScroll: false,})">
                                 <div class="col-md-12">
                                     <img class="rounded-circle" id="previewImg" height="100" width="100" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png" alt="Placeholder">
                                     <div class="control-input-image-position my-2">
@@ -205,6 +205,7 @@ export default {
     buildings: Array,
   },
 
+ 
   setup() {
     let form = useForm({
         tenant_photo: null,
