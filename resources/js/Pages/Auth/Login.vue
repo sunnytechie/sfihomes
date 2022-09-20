@@ -6,7 +6,7 @@
 
         <div class="card-header">
           <h4 class="font-weight-bolder">Sign in</h4>
-          <p class="mb-0">Enter your email and password to register</p>
+          <p class="mb-0">Enter your email and password to login</p>
           <breeze-validation-errors class="mb-3" />
             <div v-if="status" class="alert alert-success mb-3 rounded-0" role="alert">
               {{ status }}
