@@ -28,7 +28,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
-Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home.dashboard')->middleware(['auth', 'verified']);
 //Route::get('/dashboard/{any}', [HomeController::class, 'index'])->where('any', '.*')->middleware(['auth', 'verified']);
 
 //route resource
