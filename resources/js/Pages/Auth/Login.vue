@@ -16,12 +16,12 @@
         <div class="card-body">
           <form role="form" @submit.prevent="submit">
           
-            <div class="input-group input-group-outline mb-3">
+            <div class="form-group mb-3">
               <label class="form-label">Email</label>
               <input type="email" class="form-control" id="email" v-model="form.email" required>
             </div>
 
-            <div class="input-group input-group-outline mb-3">
+            <div class="form-group mb-3">
               <label class="form-label">Password</label>
               <input type="password" class="form-control" id="password" v-model="form.password" required>
             </div>

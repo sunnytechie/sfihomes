@@ -248,7 +248,7 @@
             <div class="card-body px-0 pb-2">
 
               <div class="table-responsive p-0">
-                <section v-html="$props.security.details"></section>
+                <section v-html="$props.security.security_details"></section>
               </div>
              
             </div>

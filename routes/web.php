@@ -32,20 +32,23 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middle
 //Route::get('/dashboard/{any}', [HomeController::class, 'index'])->where('any', '.*')->middleware(['auth', 'verified']);
 
 //route resource
-Route::resource('tenants', TenantController::class)->middleware(['auth', 'verified']);
-Route::resource('departments', DepartmentController::class)->middleware(['auth', 'verified']);
-Route::resource('buildings', BuildingController::class)->middleware(['auth', 'verified']);
-Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
-Route::resource('assets', AssetController::class)->middleware(['auth', 'verified']);
-Route::resource('items', ItemController::class)->middleware(['auth', 'verified']);
-Route::resource('members', MemberController::class)->middleware(['auth', 'verified']);
-Route::resource('securities', SecurityController::class)->middleware(['auth', 'verified']);
-Route::resource('details', DetailController::class)->middleware(['auth', 'verified']);
+Route::resource('tenants', TenantController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('departments', DepartmentController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('buildings', BuildingController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('users', UserController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('assets', AssetController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('items', ItemController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('members', MemberController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('securities', SecurityController::class)->middleware(['auth', 'verified', 'is_admin']);
+Route::resource('details', DetailController::class)->middleware(['auth', 'verified', 'is_admin']);
 
-Route::get('new/{tenant}/member', [App\Http\Controllers\MemberController::class, 'new'])->name('new.tenant.member')->middleware('auth', 'verified');
-Route::get('families/tenant', [App\Http\Controllers\TenantController::class, 'families'])->name('families')->middleware('auth', 'verified');
-Route::get('singles/tenant', [App\Http\Controllers\TenantController::class, 'singles'])->name('singles')->middleware('auth', 'verified');
-Route::get('t/department_id/{id}', [App\Http\Controllers\TenantController::class, 'department'])->name('department.tenant')->middleware('auth', 'verified');
-Route::get('t/building_id/{id}', [App\Http\Controllers\TenantController::class, 'building'])->name('building.tenant')->middleware('auth', 'verified');
+Route::get('new/{tenant}/member', [App\Http\Controllers\MemberController::class, 'new'])->name('new.tenant.member')->middleware('auth', 'verified', 'is_admin');
+Route::get('families/tenant', [App\Http\Controllers\TenantController::class, 'families'])->name('families')->middleware('auth', 'verified', 'is_admin');
+Route::get('singles/tenant', [App\Http\Controllers\TenantController::class, 'singles'])->name('singles')->middleware('auth', 'verified', 'is_admin');
+Route::get('t/department_id/{id}', [App\Http\Controllers\TenantController::class, 'department'])->name('department.tenant')->middleware('auth', 'verified', 'is_admin');
+Route::get('t/building_id/{id}', [App\Http\Controllers\TenantController::class, 'building'])->name('building.tenant')->middleware('auth', 'verified', 'is_admin');
+
+Route::get('error/404', [App\Http\Controllers\ErrorController::class, 'index'])->name('unAuthorized')->middleware('auth', 'verified');
+
 
 require __DIR__.'/auth.php';

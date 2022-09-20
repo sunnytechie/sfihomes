@@ -25,7 +25,7 @@
                 <li><Link class="dropdown-item" href="/departments/create"><i class="bi bi-pc-display-horizontal"></i> Department</Link></li>
                 <li><Link class="dropdown-item" href="/buildings/create"><i class="bi bi-building"></i> Building/Quaters</Link></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><Link class="dropdown-item" href="/users"><i class="bi bi-person-lines-fill"></i> Administrators</Link></li>
+                <li><Link class="dropdown-item" :href="route('users.index')"><i class="bi bi-person-lines-fill"></i> Administrators</Link></li>
               </ul>
             </li>
 
