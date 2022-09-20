@@ -13,51 +13,72 @@
             <div class="offcanvas-body">
                 <nav class="nav nav-pills flex-column mb-auto" style="background: transparent;">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
+                        <Link href="/" class="nav-link active" aria-current="page">
                             <span><i class="bi bi-grid-1x2-fill me-2"></i></span>
                             <span>Dashboard</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <Link :href="route('families')" class="nav-link">
                             <span><i class="bi bi-people me-2"></i></span>
                             <span>Families/Married</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <Link :href="route('singles')" class="nav-link">
                             <span><i class="bi bi-person me-2"></i></span>
                             <span>Singles</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <Link :href="route('departments.index')" class="nav-link">
                             <span><i class="bi bi-building me-2"></i></span>
                             <span>Department</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <Link :href="route('buildings.index')" class="nav-link">
                             <span><i class="bi bi-joystick me-2"></i></span>
                             <span>Quarters</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <Link @click="logout" class="nav-link">
                             <span><i class="bi bi-box-arrow-left me-2"></i></span>
                             <span>Sign Out</span>
-                        </a>
+                        </Link>
                     </li>
                 </nav>
             </div>
         </div>
 
 </template>
+
+<script>
+    import { Link } from '@inertiajs/inertia-vue3'
+    import { Inertia } from '@inertiajs/inertia'
+    
+    export default {
+      components: {
+        Link,
+      },
+      data() {
+        return {
+          showingNavigationDropdown: false,
+        }
+      },
+      methods: {
+        logout() {
+          Inertia.post(route("logout"));
+        },
+      },
+    }
+    </script>
 
 <style>
     .sidebar-offcanvas {
