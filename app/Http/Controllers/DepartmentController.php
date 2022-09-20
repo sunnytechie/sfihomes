@@ -15,7 +15,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::orderBy('created_at', 'desc')->get();
+        return Inertia::render('Departments/Index', [
+            'departments' => $departments,
+        ]);
     }
 
     /**
@@ -51,7 +54,7 @@ class DepartmentController extends Controller
         $department->thumbnail = $request->thumbnail;
         $department->save();
         
-        return redirect()->route('departments.create')->with('message', 'Work department created successfully');
+        return redirect()->route('departments.create')->with('message', 'Successfully added to list');
     }
 
     /**

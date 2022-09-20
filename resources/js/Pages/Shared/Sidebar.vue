@@ -11,44 +11,44 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="#">
+          <Link class="nav-link text-white active bg-gradient-primary" href="/">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
             <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
+          </Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
+          <Link class="nav-link text-white" :href="route('families')">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="bi bi-people opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Families/Married</span>
-          </a>
+          </Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
+          <Link class="nav-link text-white " :href="route('singles')">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="bi bi-person opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Singles</span>
-          </a>
+          </Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
+          <Link class="nav-link text-white" :href="route('departments.index')">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="bi bi-microsoft-teams opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Departments</span>
-          </a>
+          </Link>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
+          <Link class="nav-link text-white" :href="route('buildings.index')">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="bi bi-building opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Quaters</span>
-          </a>
+            <span class="nav-link-text ms-1">Quarters</span>
+          </Link>
         </li>
         
         <li class="nav-item">

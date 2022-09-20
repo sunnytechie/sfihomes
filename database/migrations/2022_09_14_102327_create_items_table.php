@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('tenant_id');
-            $table->string('house_item_name');
-            $table->text('house_item_description');
-            $table->text('house_item_file')->nullable();
+            $table->text('details')->nullable();
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }

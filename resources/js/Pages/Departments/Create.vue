@@ -3,8 +3,8 @@
   <AuthenticatedLayout>
     <section>
         <div class="container">
-            <div class="row" style="background: #fff">
-                <div class="col-md-6 offset-md-3 my-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">New Department</h5>

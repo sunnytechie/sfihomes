@@ -115,6 +115,17 @@
                 }
             }
         </script>
+
+        <script>
+            setTimeout(() => {
+                const box = document.getElementById('bottomAlert');
+
+                // 👇️ removes element from DOM
+
+                // 👇️ hides element (still takes up space on page)
+                // box.style.visibility = 'hidden';
+                }, 1500);
+        </script>
     </body>
     
 </html>

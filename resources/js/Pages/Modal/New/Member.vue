@@ -1,14 +1,24 @@
 <template>
-  <Head title="New Member" />
-  <AuthenticatedLayout>
-    <section>
-      <div class="container">
-        <div class="col-md-8 offset-2">
-          <div class="card">
-        <div class="card-header px-4 pt-2 pb-0">
-          <h5>New Member</h5>
-        </div>
-        <div class="card-body">
+  <section>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="memberModal"
+      tabindex="-1"
+      aria-labelledby="memberModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="memberModalLabel">New Members</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
           <form
             @submit.prevent="
               form.post(route('members.store'), {
@@ -17,7 +27,7 @@
               })
             "
           >
-            
+            <div class="modal-body">
               <div class="form-group mb-3">
                 <img
                   class="rounded-circle"
@@ -35,14 +45,13 @@
                       form.household_member_photo = $event.target.files[0]
                     "
                     onchange="previewFile(this);"
-                    required
                   />
                 </div>
               </div>
               <div>
                 
               </div>
-              <input type="hidden" v-model="form.tenant_id">
+              <input type="text" v-model="form.tenant_id">
 
               <div class="form-group mb-3">
                 <label for="my-input">Full Name</label>
@@ -149,8 +158,8 @@
                   required
                 >
                   <option disabled>Choose...</option>
-                  <option>No</option>
-                  <option>Yes</option>
+                  <option>Male</option>
+                  <option>Female</option>
                 </select>
               </div>
 
@@ -161,50 +170,50 @@
               >
                 {{ form.progress.percentage }}%
               </progress>
-            
-              <div class="d-flex justify-content-end">
-                <button
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
                 type="submit"
                 class="btn btn-md btn-success"
                 style="color: #fff"
               >
                 <i class="bi bi-send-check"></i> Submit
               </button>
-              </div>
-              
+            </div>
           </form>
         </div>
       </div>
-        </div>
-      </div>
-    </section>
-    </AuthenticatedLayout>
+    </div>
+  </section>
 </template>
 
-<script>
-    import AuthenticatedLayout from '@/Layouts/Authenticated.vue'
-    import { Head, Link, useForm } from '@inertiajs/inertia-vue3'
-    
-    export default {
-      components: {
-        AuthenticatedLayout,
-        Head,
-        Link
-      },
-    
-      props: {
-        tenant: Object,
-        detail: Object,
-        assets: Array,
-        items: Array,
-        security: Object,
-        members: Array,
-        tenantIDforThisMember: Object
-      },
 
-      setup(props) {
+<script>
+import AuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { useForm, Head, Link } from "@inertiajs/inertia-vue3";
+
+export default {
+  components: {
+    AuthenticatedLayout,
+    Head,
+    Link,
+  },
+
+props: {
+    tenant: Object,
+},
+
+  setup() {
     let form = useForm({
-      tenant_id: props.tenantIDforThisMember,
+      tenant_id: '',
       household_member_photo: '',
       household_member_fullname: '',
       household_member_relationship: 'Choose...',
@@ -219,8 +228,6 @@
     return {
       form,
     };
-  },
-
-
-    }
-    </script>
+  }
+};
+</script>

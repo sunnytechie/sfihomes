@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Models\Asset;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AssetController extends Controller
 {
@@ -56,7 +60,16 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $asset = Asset::find($id);
+        $details = $asset->details;
+        $tenantID = $asset->tenant_id;
+        $tenantDetails = Tenant::where('id', $tenantID)->first();
+        //dd($tenantDetails);
+        return Inertia::render('Assets/Edit', [
+            'asset' => $asset,
+            'details' => $details,
+            'tenantDetails' => $tenantDetails,
+        ]);
     }
 
     /**
@@ -68,7 +81,12 @@ class AssetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $asset = Asset::find($id);
+        $asset->details = $request->details;
+        $asset->file = $request->file;
+        $asset->save();
+
+        return Redirect::route('assets.edit', $id)->with('message', 'Updated successfully.');
     }
 
     /**

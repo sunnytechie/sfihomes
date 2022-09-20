@@ -14,4 +14,9 @@ class Department extends Model
         'location',
         'thumbnail',
     ];
+
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
+    }
 }

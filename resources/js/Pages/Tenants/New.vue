@@ -36,8 +36,8 @@
                                     <label for="inputTitle" class="form-label">Title</label>
                                     <select id="inputTitle" class="form-select" v-model="form.tenant_title" required>
                                     <option selected disabled>Choose...</option>
-                                    <option>Mr</option>
-                                    <option>Mrs</option>
+                                    <option>Mr.</option>
+                                    <option>Mrs.</option>
                                     <option>Miss</option>
                                     <option>Master</option>
                                     <option>Dr.</option>
@@ -61,6 +61,25 @@
                                     <input type="text" class="form-control" id="middlename" v-model="form.tenant_middle_name" placeholder="Optional">
                                 </div>
                                 <!-- //End NAmes -->
+
+                                <div class="col-md-4">
+                                    <label for="job" class="form-label">Job Title</label>
+                                    <input type="text" class="form-control" id="job" v-model="form.tenant_job_title" placeholder="Staff Supervisor" required>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="tenant_employed_at" class="form-label">Employment date</label>
+                                    <input type="date" class="form-control" id="tenant_employed_at" v-model="form.tenant_employed_at" placeholder="Surname" required>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select id="inputTitle" class="form-select" v-model="form.tenant_status" required>
+                                    <option selected disabled>Choose...</option>
+                                    <option selected>Active</option>
+                                    <option>Inactive</option>
+                                    </select>                                
+                                </div>
 
                                 <!-- //##### -->
                                 <div class="col-md-2">
@@ -157,7 +176,7 @@
                                     <label for="department" class="form-label">Department Name</label>
                                     <select id="department" class="form-select" v-model="form.department_id" required>
                                     <option selected disabled>Choose...</option>
-                                        <option v-for="department in departments" :key="department.id">{{ department.name }}</option>
+                                        <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
                                     </select>
                                 </div>
 
@@ -165,7 +184,7 @@
                                     <label for="building" class="form-label">Building/Quaters</label>
                                     <select id="building" class="form-select" v-model="form.building_id" required>
                                     <option selected disabled>Choose...</option>
-                                        <option v-for="building in buildings" :key="building.id">{{ building.name }}</option>
+                                        <option v-for="building in buildings" :key="building.id" :value="building.id">{{ building.name }}</option>
                                     </select>
                                 </div>
                                 
@@ -209,9 +228,12 @@ export default {
   setup() {
     let form = useForm({
         tenant_photo: null,
-        building_id: 'Choose...',
-        department_id: 'Choose...',
+        building_id: '',
+        department_id: '',
         tenant_title: 'Choose...',
+        tenant_job_title: '',
+        tenant_employed_at: '',
+        tenant_status: 'Active',
         tenant_surname: '',
         tenant_middle_name: '',
         tenant_last: '',

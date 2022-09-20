@@ -99,7 +99,7 @@ class DetailController extends Controller
         
         $tenantID = $detail->tenant_id;
         //redirect to profile to continue adding other info.
-        return Redirect::route('tenants.show', $tenantID);
+        return Redirect::route('tenants.show', $tenantID)->with('message', 'New tenant created.');
     }
 
     /**

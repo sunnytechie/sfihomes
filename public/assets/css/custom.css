@@ -73,3 +73,26 @@
  }
 
  /* End FormProgress */
+
+ .bottom-alert {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  z-index: 999;
+  background-color: #fff;
+  opacity: 50px;
+  -webkit-animation:bounce 1s infinite;
+ }
+
+ @-webkit-keyframes bounce {
+  0%       { bottom:2px; }
+  25%, 75% { bottom:10px; }
+  50%      { bottom:15px; }
+  100%     {bottom:0;}
+}
+
+.modal-backdrop
+{
+    opacity:0.2 !important;
+}

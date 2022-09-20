@@ -42,4 +42,10 @@ Route::resource('members', MemberController::class)->middleware(['auth', 'verifi
 Route::resource('securities', SecurityController::class)->middleware(['auth', 'verified']);
 Route::resource('details', DetailController::class)->middleware(['auth', 'verified']);
 
+Route::get('new/{tenant}/member', [App\Http\Controllers\MemberController::class, 'new'])->name('new.tenant.member')->middleware('auth', 'verified');
+Route::get('families/tenant', [App\Http\Controllers\TenantController::class, 'families'])->name('families')->middleware('auth', 'verified');
+Route::get('singles/tenant', [App\Http\Controllers\TenantController::class, 'singles'])->name('singles')->middleware('auth', 'verified');
+Route::get('t/department_id/{id}', [App\Http\Controllers\TenantController::class, 'department'])->name('department.tenant')->middleware('auth', 'verified');
+Route::get('t/building_id/{id}', [App\Http\Controllers\TenantController::class, 'building'])->name('building.tenant')->middleware('auth', 'verified');
+
 require __DIR__.'/auth.php';

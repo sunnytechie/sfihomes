@@ -52,4 +52,14 @@ class Tenant extends Model
     {
         return $this->hasOne(Detail::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 }

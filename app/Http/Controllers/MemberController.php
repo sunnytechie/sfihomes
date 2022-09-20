@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class MemberController extends Controller
 {
@@ -23,7 +26,17 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Members/New', [
+            
+        ]);
+    }
+
+    public function new($tenant)
+    {
+        $tenantIDforThisMember = $tenant;
+        return Inertia::render('Members/New', [
+           'tenantIDforThisMember' => $tenantIDforThisMember,
+        ]);
     }
 
     /**
@@ -34,7 +47,23 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $tenantID = $request->tenant_id;
+
+        $member = New Member;
+        $member->tenant_id = $request->tenant_id;
+        $member->household_member_photo = $request->household_member_photo;
+        $member->household_member_fullname = $request->household_member_fullname;
+        $member->household_member_relationship = $request->household_member_relationship;
+        $member->household_member_sex = $request->household_member_sex;
+        $member->household_member_birth = $request->household_member_birth;
+        $member->household_member_phone = $request->household_member_phone;
+        $member->household_member_state = $request->household_member_state;
+        $member->household_member_lga = $request->household_member_lga;
+        $member->household_member_disability = $request->household_member_disability;
+        $member->save();
+
+        return Redirect::route('tenants.show', $tenantID)->with('message', 'New member has been added.');
     }
 
     /**

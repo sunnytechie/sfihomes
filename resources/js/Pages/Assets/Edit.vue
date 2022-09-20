@@ -1,5 +1,5 @@
 <template>
-    <Head title="Security details" />
+    <Head title="Assets details" />
   <AuthenticatedLayout>
     <section>
         <div class="container">
@@ -12,12 +12,12 @@
                           </div>
                           
                             <h4 class="card-title my-3">Security details on {{ $props.tenantDetails.tenant_title }} {{ $props.tenantDetails.tenant_surname }} {{ $props.tenantDetails.tenant_last }}</h4>
-                            <form @submit.prevent="form.post(route('securities.update', $props.security.id), {preserveScroll: true})">
+                            <form @submit.prevent="form.post(route('assets.update', $props.asset.id), {preserveScroll: true})">
                                
                                 <div class="form-group mb-3">
                                     <label for="my-input">Informations</label>
                                     <editor
-                                        v-model="form.security_details"
+                                        v-model="form.details"
                                         api-key="ifprekyziwmwbff5pm4lgrqgmsm0x5yaew0tctgdk95r94ae"
                                         :init="{
                                           height: 600,
@@ -37,7 +37,7 @@
 
                                 <div class="form-group">
                                     <label for="my-input">Upload Picture</label>
-                                    <input id="my-input" class="form-control" type="file" @input="form.security_file = $event.target.files[0]">
+                                    <input id="my-input" class="form-control" type="file" @input="form.file = $event.target.files[0]">
                                 </div>
 
                                 <progress v-if="form.progress" :value="form.progress.percentage" max="100">
@@ -45,7 +45,7 @@
                                 </progress>
 
                                 <div class="form-group d-flex justify-content-between mt-3">
-                                  <Link :href="route('tenants.show', $props.security.tenant_id)" class="btn btn-md btn-success" style="color: #fff"><i class="bi bi-send-check"></i> Go Back</Link>
+                                  <Link :href="route('tenants.show', $props.asset.tenant_id)" class="btn btn-md btn-success" style="color: #fff"><i class="bi bi-send-check"></i> Go Back</Link>
                                     <button type="submit" class="btn btn-md btn-success" style="color: #fff"><i class="bi bi-send-check"></i> Update</button>
                                 </div>
                                 
@@ -75,15 +75,15 @@ export default {
   },
 
   props: {
-    security: Object,
+    asset: Object,
     tenantDetails: Object,
   },
 
   setup(props) {
     let form = useForm({
         _method: 'put',
-        security_file: null,
-        security_details: props.security.security_details,
+        file: null,
+        details: props.asset.details,
     })
     return {
       form,

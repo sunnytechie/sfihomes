@@ -30,7 +30,7 @@
             </li>
 
             <li class="nav-item d-flex align-items-center">
-              <Link @click="logout" class="nav-link text-body px-2 font-weight-bold px-0" as="button">
+              <Link @click="logout" class="nav-link text-body px-2 font-weight-bold" as="button" style="border: 0; border-radius: 20px;">
                 <i class="bi bi-box-arrow-left me-sm-1 me-1"></i>
                 <span class="d-sm-inline d-none">Sign Out</span>
               </Link>

@@ -15,7 +15,10 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        //
+        $buildings = Building::orderBy('created_at', 'desc')->get();
+        return Inertia::render('Buildings/Index', [
+            'buildings' => $buildings,
+        ]);
     }
 
     /**
@@ -52,7 +55,7 @@ class BuildingController extends Controller
         $building->thumbnail = $request->thumbnail;
         $building->save();
         
-        return redirect()->route('buildings.create')->with('message', 'Building name created successfully.');
+        return redirect()->route('buildings.create')->with('message', 'Successfully Added to list.');
     }
 
     /**

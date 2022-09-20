@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('tenant_photo');
             $table->string('building_id');
             $table->string('department_id');
+            $table->string('tenant_job_title')->nullable();
+            $table->string('tenant_employed_at')->nullable();
+            $table->string('tenant_status')->default('Active');
             $table->string('tenant_title');
             $table->string('tenant_surname');
             $table->string('tenant_middle_name')->nullable();

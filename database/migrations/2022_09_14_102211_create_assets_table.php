@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('tenant_id');
-            $table->string('income_asset_name');
-            $table->text('income_asset_details');
-            $table->text('income_asset_file')->nullable();
+            $table->text('details')->nullable();
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }

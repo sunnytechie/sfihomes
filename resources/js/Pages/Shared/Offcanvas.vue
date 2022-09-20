@@ -43,7 +43,7 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <span><i class="bi bi-joystick me-2"></i></span>
-                            <span>Quaters</span>
+                            <span>Quarters</span>
                         </a>
                     </li>
 

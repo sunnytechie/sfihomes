@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $welcome = "Hi there, welcome to the dashboard";
+        $tenants = Tenant::orderBy('created_at', 'desc')->with('department', 'building')->get();
+
         return Inertia::render('Home', [
-            'welcome' => $welcome,
+            'tenants' => $tenants,
         ]);
     }
 }

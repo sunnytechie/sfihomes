@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use Inertia\Inertia;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ItemController extends Controller
 {
@@ -56,7 +60,16 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+        $details = $item->details;
+        $tenantID = $item->tenant_id;
+        $tenantDetails = Tenant::where('id', $tenantID)->first();
+        //dd($tenantDetails);
+        return Inertia::render('Items/Edit', [
+            'item' => $item,
+            'details' => $details,
+            'tenantDetails' => $tenantDetails,
+        ]);
     }
 
     /**
@@ -68,7 +81,12 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::find($id);
+        $item->details = $request->details;
+        $item->file = $request->file;
+        $item->save();
+
+        return Redirect::route('items.edit', $id)->with('message', 'Updated successfully.');
     }
 
     /**

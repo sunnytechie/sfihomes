@@ -26,6 +26,48 @@ class TenantController extends Controller
         //
     }
 
+    public function department($id)
+    {
+        $tenants = Tenant::orderBy('created_at', 'desc')
+        ->where('department_id', $id)
+        ->with('department', 'building')
+        ->get();
+        return Inertia::render('Tenants/Department', [
+            'tenants' => $tenants,
+        ]);
+    }
+
+    public function building($id)
+    {
+        $tenants = Tenant::orderBy('created_at', 'desc')
+        ->where('building_id', $id)
+        ->with('department', 'building')
+        ->get();
+        return Inertia::render('Tenants/Building', [
+            'tenants' => $tenants,
+        ]);
+    }
+
+    public function families() {
+        //Tenants that are family
+        $familyTenants = Tenant::orderBy('created_at', 'desc')
+        ->where('tenant_relationship_status', '!=',  'Single')
+        ->with('department', 'building')->get();
+        return Inertia::render('Tenants/Family', [
+            'familyTenants' => $familyTenants,
+        ]);
+    }
+
+    public function singles() {
+        //Tenants that are single
+        $singleTenants = Tenant::orderBy('created_at', 'desc')
+        ->where('tenant_relationship_status', 'Single')
+        ->with('department', 'building')->get();
+        return Inertia::render('Tenants/Single', [
+            'singleTenants' => $singleTenants,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,8 +99,11 @@ class TenantController extends Controller
             'department_id' => 'required',
             'tenant_title' => 'required',
             'tenant_surname' => 'required',
-            'tenant_middle_name' => '',
             'tenant_last' => 'required',
+            'tenant_middle_name' => '',
+            'tenant_job_title' => '',
+            'tenant_employed_at' => '',
+            'tenant_status' => '',
             'tenant_sex' => 'required',
             'tenant_birth_date' => 'required',
             'tenant_relationship_status' => 'required',
@@ -75,7 +120,7 @@ class TenantController extends Controller
             'tenant_mobile_phone' => 'required',
         ]);
 
-        $nil = "Nil";
+        //$nil = "Nil";
 
         $tenant = New Tenant;
         $tenant->tenant_photo = $request->tenant_photo;
@@ -85,6 +130,9 @@ class TenantController extends Controller
         $tenant->tenant_surname = $request->tenant_surname;
         $tenant->tenant_middle_name = $request->tenant_middle_name;
         $tenant->tenant_last = $request->tenant_last;
+        $tenant->tenant_job_title = $request->tenant_job_title;
+        $tenant->tenant_employed_at = $request->tenant_employed_at;
+        $tenant->tenant_status = $request->tenant_status;
         $tenant->tenant_sex = $request->tenant_sex;
         $tenant->tenant_birth_date = $request->tenant_birth_date;
         $tenant->tenant_relationship_status = $request->tenant_relationship_status;
@@ -106,9 +154,15 @@ class TenantController extends Controller
            
         $security = New Security;
         $security->tenant_id = $tenantID;
-        $security->security_details = "Nil";
-        $security->security_file = "Nil";
         $security->save();
+
+        $item = New Item;
+        $item->tenant_id = $tenantID;
+        $item->save();
+
+        $asset = New Asset;
+        $asset->tenant_id = $tenantID;
+        $asset->save();
 
         $detail = New Detail;
         $detail->tenant_id = $tenantID;
@@ -147,19 +201,25 @@ class TenantController extends Controller
     public function show($id)
     {
         $tenant = Tenant::find($id);
+        $tenantDepartmentId = $tenant->department_id;
+        $tenantBuildingId = $tenant->building_id;
+        $department = Department::find($tenantDepartmentId);
+        $building = Building::find($tenantBuildingId);
         $detail = Detail::where('tenant_id', $id)->first();
-        $assets = Asset::where('tenant_id', $id)->get();
-        $items = Item::where('tenant_id', $id)->get();
+        $asset = Asset::where('tenant_id', $id)->first();
+        $item = Item::where('tenant_id', $id)->first();
         $security = Security::where('tenant_id', $id)->first();
         $members = Member::where('tenant_id', $id)->get();
         //dd($detail);
         return Inertia::render('Tenants/Show', [
             'tenant' => $tenant,
             'detail' => $detail,
-            'assets' => $assets,
-            'items' => $items,
+            'asset' => $asset,
+            'item' => $item,
             'security' => $security,
             'members' => $members,
+            'department' => $department,
+            'building' => $building,
         ]);
     }
 
