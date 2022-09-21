@@ -49,7 +49,7 @@ class AssetController extends Controller
      */
     public function show($id)
     {
-        //
+        //Not in use
     }
 
     /**
